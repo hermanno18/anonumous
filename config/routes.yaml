@@ -1,0 +1,5 @@
+index:
+   path: /
+   controller: App\Controller\QuestionController::new
+logout:
+   path: /logout

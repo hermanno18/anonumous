@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Poser votre question !{% endblock %}
+
+{% block body_main_container %}
+<div class="container" >
+    <div class="row mb-4 bg-dark text-white text-center p-1 animated fadeIn ">
+           <p class=" animated zoomIn slower">
+               Posez mois vos questions, de toutes sorte de maniere <span class="text-success">TOTALEMENT ANNONYME !!</span> alors laissez libre cours a votre imagination!
+           </p> 
+    </div>
+    <div class="mb-2 " >
+        <!-- le contenu         -->
+        <div class="mb-1 text-center">
+            <div class="d-inline-flex ">
+                <div class=" animated bounceIn infinite"> <img src=" {{asset('assets/img/arrow_down.ico')}} " alt="" srcset=""> </div>        
+                <div class="">
+                    <h4 class="text-center text-dark animated flash delay-1s" ><b>Poses ta question ici !</b></h4>
+                </div>        
+                <div class="  animated bounceIn infinite"> <img src=" {{asset('assets/img/arrow_down.ico')}} " alt="" srcset=""> </div>        
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-12 animated swing">
+                {{ include('question/_form.html.twig') }}
+            </div>
+        </div>
+        <div class="row text-dark text-center">
+            <div class="col-12">
+                ou
+            </div> 
+        </div>
+        <div class="mt-1">
+            <a href="{{ path('question_index') }}" class="btn btn-outline-success btn-lg btn-block animated flipInX delay-3s  "> Afficher la liste des questions posées</a>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

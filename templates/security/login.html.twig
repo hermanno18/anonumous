@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Se Connecter' %}
+
+{% block body %}
+
+<div class='container mt-4'>    
+<div class="col-md-4">
+    <div class="card text-white bg-primary mb-3">
+        <div class="card-header  text-center" style="font-size: 2.3rem;">Connectez vous !</div>
+        <div class="card-body">
+            <p class="card-text">        
+                {% if error is defined and error %}
+                <div class=" alert alert-danger" style="font-size: 1.3rem;">
+                    {{error.messageKey|trans(error.messagedata, "security") }}
+                </div>
+                {% endif %}
+                {% for message in app.flashes('success') %}
+                <div class=" alert alert-success" style="font-size: 1.7rem;">
+                    {{message}}
+                </div>
+                {% endfor %}</p>
+                <form method="post" action="{{ path("login") }}" accept-charset="UTF-8">
+                    <input type="hidden" name="action" value="users/send-password-reset-email">
+                <div class="form-group">
+                    <label for="maticule" style="font-size: 1.7rem;">Matricule :</label>
+                    <input id="ùaticule" type="text" name="_username" class="form-control"
+                        value="{% if last_username is defined %}{{ last_username }}{% endif %}">
+                </div>
+                <div class="form-group">
+                    <label for="password"  style="font-size: 1.7rem;">Mot de passe :</label>
+                    <input id="password" type="password" name="_password" class="form-control">
+                </div>
+                
+                
+                    <input type="submit" value="Se Connecter !" class="btn btn-success col-12">
+                </form>
+                <br><br>
+                <p class="">
+                    Vous n'avez pas de compte? <a href=" {{path('login')}} " class="text-dark">inscrivez vous ici</a> !
+                </p>
+                <p class="">
+                     <a href=" {{path('login')}} " class="text-dark">Avez-vous oublié votre mot de passe ? tampi pour toi !!!!!!!</a> 
+                </p>
+        </div>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}

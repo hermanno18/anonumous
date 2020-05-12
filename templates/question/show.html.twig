@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}{{question.content }}{% endblock %}
+
+{% block body_main_container %}
+{% for message in app.flashes('success') %}
+    <div class=" alert alert-success small smalltalk animated fadeOutLeft delay-5s">
+        {{message}}
+    </div>
+{% endfor %}
+{% for message in app.flashes('warning') %}
+    <div class=" alert alert-warning small smalltalk animated fadeOutRight delay-5s">
+        <p class="animated bounce infinite">
+            {{message}}
+        </p>
+    </div>
+{% endfor %}
+
+    <div class="container">
+        <div class="mb-2">
+            <div class="bg-primary mb-2 mt-1 container text-light pb-1 animated fadeInLeft " style="min-height: 200px;">
+                <div class=" fixed-wrapper">
+                    <h5 class="text-center pt-2" style="min-height: 100px;">{{question.content }}</h5>
+                </div>
+                <div class="p-1 text-center text-light fixed-wrapper" style="background-color: rgba(44, 43, 43, 0.493);">
+                    <div class=""  style="background-color: rgba(44, 43, 43, 0.78);">
+                        <p style="min-height: 20px;">
+                            {% if (question.reponse) and question.status != 0 %}
+                            <span class="text-success">Hermanno</span> a répondu :
+                            {% else %}
+                            <span class="text-success">Hermanno</span> n'a pas encore répondu
+                            {% endif %}
+                        </p>
+                    </div>
+                    <p style="min-height: 40px;">
+                        {% if (question.reponse) and question.status != 0 %}
+                            &laquo;{{ question.reponse.content }} &raquo;
+                        {% elseif not question.reponse and  question.status == 0 and app.user %}
+                            <a href="{{ path('reponse_new', {'question_id': question.id}) }}" class="btn btn-block text-light">Répondre</a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 btn-group mb-2 animated fadeInRight delay-1s" >
+                    <a href="{{ path('question_show', {'id': question.id - 1}) }}" class="btn btn-outline-default btn "> &leftarrow; <small>Question précedente</small></a>
+                    <a href="{{ path('question_show', {'id': question.id + 1}) }}" class="btn btn-outline-default btn"> <small>Question suivante</small>  &rightarrow; </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 btn-group animated fadeInLeft delay-2s" height="200px">
+                    {% if not app.user %}
+                    <a href="{{ path('question_new') }}" class="btn btn-outline-primary btn-lg p-2"> Poser une nouvelle question</a>
+                    {% endif %}
+                    <a href="{{ path('question_index') }}" class="btn btn-outline-success btn-lg p-2"> Liste des questions</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

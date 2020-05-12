@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+<div class="form-group">
+    {{form_row(form.content)}}
+    {{ form_rest(form) }}
+    <button class="btn btn-default  btn-lg btn-block">{{ button_label|default('Envoyer la Réponse !') }}</button>
+</div>
+{{ form_end(form) }}
