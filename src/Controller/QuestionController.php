@@ -22,21 +22,21 @@ class QuestionController extends AbstractController
      */
     public function index(QuestionRepository $questionRepository,EntityManagerInterface $em,  Request $request): Response
     {
-        // $paginator = new PaginatorInterface; 
-        $paginator =  $this->get('knp_paginator');
         $response = new Response();
         $response->headers->setCookie(Cookie::create('foo', 'bar'));
-
-        $properties = $paginator->paginate(
-            $questionRepository->findAllpaginated(),
-            $request->query->getInt('page', 1),
-            12
-        );
+        
+        // $paginator = new PaginatorInterface; 
+        // $paginator =  $this->get('knp_paginator');
+        // $properties = $paginator->paginate(
+        //     $questionRepository->findAllpaginated(),
+        //     $request->query->getInt('page', 1),
+        //     12
+        // );
 
         return $this->render('question/index.html.twig', [
-            // 'questions' => $questionRepository->findBy([], ["created_at" => "DESC" ]),
+            'questions' => $questionRepository->findBy([], ["created_at" => "DESC" ]),
             
-            'questions' => $properties,
+            // 'questions' => $properties,
             'action' => "list_question"
 
         ]);
