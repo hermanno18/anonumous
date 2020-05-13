@@ -10,10 +10,10 @@
             <div class="list-group table table-striped">
                     {% for question in questions  %}
                     <a href="{{ path('question_show', {'id': question.id}) }}" class="list-group-item list-group-item-action flex-column align-items-start ">
-                      <div class="d-flex w-100 justify-content-between ">
-                        <h6 class="mb-1 {% if not question.reponse and  question.status == 0  %} text-danger {% else %} text-success {% endif %}">{{ question.content }}</h6>
-                        <small> <small>    <time class="timeago" datetime="2015-03-22T02:16:49+01:00" >22 Mar. 2015</time>{{ question.createdAt ? question.createdAt|date('Y-m-d H:i:s') : '' }} </small> </small>
-                      </div>
+                        <div class="d-flex w-100 justify-content-between ">
+                            <h6 class="mb-1 {% if not question.reponse and  question.status == 0  %} text-danger {% else %} text-success {% endif %}">{{ question.content }}</h6>
+                            <small> <small> {{ question.createdAt ? question.createdAt|date('d-M-Y à H:i:s') : '' }} </small> </small>
+                        </div>
                       <SMall><small class="text-info">  {% if not question.reponse and  question.status == 0  %} Hermann n'a pas encore répondu {% else %} <b>Hermann a répondu</b>  {% endif %}</small></SMall>
                     </a>
                     {% else %}

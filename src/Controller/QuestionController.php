@@ -21,6 +21,9 @@ class QuestionController extends AbstractController
      */
     public function index(QuestionRepository $questionRepository, Request $request): Response
     {
+        $response = new Response();
+        $response->headers->setCookie(Cookie::create('foo', 'bar'));
+        
         return $this->render('question/index.html.twig', [
             'questions' => $questionRepository->findBy([], ["created_at" => "DESC" ]),
             'action' => "list_question"
