@@ -26,7 +26,8 @@ class QuestionController extends AbstractController
         $response->headers->setCookie(Cookie::create('foo', 'bar'));
         
         // $paginator = new PaginatorInterface; 
-        // $paginator =  $this->get('knp_paginator');
+        $paginator =  $this->get('knp_paginator');
+        var_dump($paginator);
         // $properties = $paginator->paginate(
         //     $questionRepository->findAllpaginated(),
         //     $request->query->getInt('page', 1),
