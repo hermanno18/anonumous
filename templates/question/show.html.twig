@@ -20,7 +20,7 @@
         <div class="mb-2">
             <div class="bg-primary mb-2 mt-1 container text-light pb-1 animated fadeInLeft " style="min-height: 200px;">
                 <div class=" fixed-wrapper">
-                    <h5 class="text-center pt-2" style="min-height: 100px;">{{question.content }}</h5>
+                    <h5 class="text-center pt-2" style="min-height: 100px;">{{question.content}}</h5>
                 </div>
                 <div class="p-1 text-center text-light fixed-wrapper" style="background-color: rgba(44, 43, 43, 0.493);">
                     <div class=""  style="background-color: rgba(44, 43, 43, 0.78);">
@@ -34,7 +34,7 @@
                     </div>
                     <p style="min-height: 40px;">
                         {% if (question.reponse) and question.status != 0 %}
-                            &laquo;{{ question.reponse.content }} &raquo;
+                            &laquo;{{ question.reponse.content|nl2br }} &raquo;
                         {% elseif not question.reponse and  question.status == 0 and app.user %}
                             <a href="{{ path('reponse_new', {'question_id': question.id}) }}" class="btn btn-block text-light">Répondre</a>
                         {% endif %}
@@ -44,10 +44,10 @@
             <div class="row">
                 <div class="col-md-12 btn-group mb-2 animated fadeInRight delay-1s" >
                 {% if prev is defined and  prev is not null %}
-                    <a href="{{ path('question_show', {'id': prev.id}) }}" class="btn btn-outline-default btn " title=" {{prev.content}} "> &leftarrow; <small>Question précedente</small></a>
+                    <a href="{{ path('question_show', {'id': prev.id}) }}" class="btn btn-outline-default btn " title=" {{prev.content|u.truncate(8, '...')}} "> &leftarrow; <small>Question précedente</small></a>
                 {% endif %}
                 {% if next is defined and next is not null %}
-                    <a href="{{ path('question_show', {'id': next.id }) }}" class="btn btn-outline-default btn" title=" {{next.content}} "> <small>Question suivante</small>  &rightarrow; </a>
+                    <a href="{{ path('question_show', {'id': next.id }) }}" class="btn btn-outline-default btn" title=" {{next.content|u.truncate(8, '...')}} "> <small>Question suivante</small>  &rightarrow; </a>
                 {% endif %}
                 </div>
             </div>
