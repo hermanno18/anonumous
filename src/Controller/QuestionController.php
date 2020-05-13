@@ -33,7 +33,9 @@ class QuestionController extends AbstractController
         );
 
         return $this->render('question/index.html.twig', [
-            'questions' => $questionRepository->findBy([], ["created_at" => "DESC" ]),
+            // 'questions' => $questionRepository->findBy([], ["created_at" => "DESC" ]),
+            
+            'questions' => $properties,
             'action' => "list_question"
 
         ]);
