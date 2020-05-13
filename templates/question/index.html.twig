@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="mb-2">
-        <div class="mb-2 mt-1">
+        <div class="mb-1 mt-1">
             <div class="list-group table table-striped">
                     {% for question in pagination  %}
                     <a href="{{ path('question_show', {'id': question.id}) }}" class="list-group-item list-group-item-action flex-column align-items-start ">
@@ -20,9 +20,9 @@
                           <p> il n'y a pas encore de question</p>
                     {% endfor %}
             </div>
-            <div class="navigation">
-                {{ knp_pagination_render(pagination) }}
-            </div>
+        </div>
+        <div class="navigation mb-2">
+            {{ knp_pagination_render(pagination) }}
         </div>
         <div class="row">
             <div class="col-md-12 btn-group" height="200px">

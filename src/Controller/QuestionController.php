@@ -27,7 +27,7 @@ class QuestionController extends AbstractController
         $pagination = $paginator->paginate(
             $questionRepository->findAllpaginated(),
             $request->query->getInt('page', 1),
-            12
+            10
         );
 
         return $this->render('question/index.html.twig', [
