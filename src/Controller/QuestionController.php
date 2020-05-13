@@ -72,10 +72,14 @@ class QuestionController extends AbstractController
     /**
      * @Route("/{id}", name="question_show", methods={"GET"})
      */
-    public function show(Question $question): Response
+    public function show(Question $question, QuestionRepository $questionRepository): Response
     {
+        $prev = $questionRepository->find($question-1);
+        $next = $questionRepository->find($question+1);
         return $this->render('question/show.html.twig', [
             'question' => $question,
+            "next" => $next,
+            "prev" => $prev,
         ]);
     }
 
