@@ -21,7 +21,8 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     public function findAllpaginated():Query{
-        return $this->findAll()
+        return $this->createQueryBuilder('q')
+                    ->orderBy('q.created_at', 'DESC')
                     ->getQuery();
     }
 
