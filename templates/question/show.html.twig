@@ -43,11 +43,11 @@
             </div>
             <div class="row">
                 <div class="col-md-12 btn-group mb-2 animated fadeInRight delay-1s" >
-                {% if prev is not null %}
-                    <a href="{{ path('question_show', {'id': question.id - 1}) }}" class="btn btn-outline-default btn "> &leftarrow; <small>Question précedente</small></a>
+                {% if prev is defined and  prev is not null %}
+                    <a href="{{ path('question_show', {'id': prev.id}) }}" class="btn btn-outline-default btn " title=" {{prev.content}} "> &leftarrow; <small>Question précedente</small></a>
                 {% endif %}
-                {% if next is not null %}
-                    <a href="{{ path('question_show', {'id': question.id + 1}) }}" class="btn btn-outline-default btn"> <small>Question suivante</small>  &rightarrow; </a>
+                {% if next is defined and next is not null %}
+                    <a href="{{ path('question_show', {'id': next.id }) }}" class="btn btn-outline-default btn" title=" {{next.content}} "> <small>Question suivante</small>  &rightarrow; </a>
                 {% endif %}
                 </div>
             </div>

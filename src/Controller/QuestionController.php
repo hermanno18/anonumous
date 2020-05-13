@@ -74,12 +74,11 @@ class QuestionController extends AbstractController
      */
     public function show(Question $question, QuestionRepository $questionRepository): Response
     {
-        $prev = $questionRepository->find($question-1);
-        $next = $questionRepository->find($question+1);
+;
         return $this->render('question/show.html.twig', [
             'question' => $question,
-            "next" => $next,
-            "prev" => $prev,
+            "next" => $questionRepository->find($question + 1),
+            "prev" => $questionRepository->find($question - 1)
         ]);
     }
 
