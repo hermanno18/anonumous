@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Cookie;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-
 /**
  * @Route("/question")
  */
@@ -21,8 +20,10 @@ class QuestionController extends AbstractController
     /**
      * @Route("/liste", name="question_index", methods={"GET"})
      */
-    public function index(QuestionRepository $questionRepository,EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
+    public function index(QuestionRepository $questionRepository,EntityManagerInterface $em,  Request $request): Response
     {
+        // $paginator = new PaginatorInterface; 
+        $paginator =  $this->get('knp_paginator');
         $response = new Response();
         $response->headers->setCookie(Cookie::create('foo', 'bar'));
 
