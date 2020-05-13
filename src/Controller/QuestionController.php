@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Cookie;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/question")
@@ -19,11 +21,17 @@ class QuestionController extends AbstractController
     /**
      * @Route("/liste", name="question_index", methods={"GET"})
      */
-    public function index(QuestionRepository $questionRepository, Request $request): Response
+    public function index(QuestionRepository $questionRepository,EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
         $response = new Response();
         $response->headers->setCookie(Cookie::create('foo', 'bar'));
-        
+
+        $properties = $paginator->paginate(
+            $questionRepository->findAllpaginated(),
+            $request->query->getInt('page', 1),
+            12
+        );
+
         return $this->render('question/index.html.twig', [
             'questions' => $questionRepository->findBy([], ["created_at" => "DESC" ]),
             'action' => "list_question"

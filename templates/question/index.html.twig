@@ -16,6 +16,9 @@
                         </div>
                       <SMall><small class="text-info">  {% if not question.reponse and  question.status == 0  %} Hermann n'a pas encore répondu {% else %} <b>Hermann a répondu</b>  {% endif %}</small></SMall>
                     </a>
+                    <div class="navigation">
+                        {{ knp_pagination_render(questions) }}
+                    </div>
                     {% else %}
                           <p> il n'y a pas encore de questions</p>
                     {% endfor %}
