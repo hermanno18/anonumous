@@ -76,6 +76,8 @@ class QuestionController extends AbstractController
     {
         $prev = $questionRepository->find($question-1);
         $next = $questionRepository->find($question+1);
+        dump($prev);
+        dump($next);
         return $this->render('question/show.html.twig', [
             'question' => $question,
             "next" => $next,
