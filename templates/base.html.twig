@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -16,6 +16,16 @@
 
         {% endblock %}
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5ebc07efc829af0012ba43cd&product=inline-share-buttons' async='async'></script>
+    
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+       window.OneSignal = window.OneSignal || [];
+          OneSignal.push(function() {
+           OneSignal.init({
+             appId: "f3b71e2e-e73b-4be1-a915-683dada8c5ce",
+           });
+       });
+    </script>
     </head>
     <body style="background-color: #ddeeffab;">
         {% block body %}
